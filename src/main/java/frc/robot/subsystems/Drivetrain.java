@@ -34,7 +34,7 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import frc.robot.swerve.drive.SwerveDrive;
 import frc.robot.swerve.math.CentricMode;
 import frc.robot.RobotMap;
-import frc.robot.commands.teleop.TeleDrive;
+import frc.robot.command.teleop.TeleDrive;
 import frc.robot.swerve.drive.CanTalonSwerveEnclosure;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -163,7 +163,7 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void drive(double fwd, double strafe, double rotateCW) {
-		if (LimitSpeed()) {
+		if (getLimitSpeed()) {
 			fwd /= 10;
 			strafe /= 10;
 			rotateCW /= 10;	
@@ -226,7 +226,7 @@ public class Drivetrain extends Subsystem {
 		return centricMode;
 	}
 	
-	public boolean LimitSpeed() {
+	public boolean getLimitSpeed() {
 		return limitSpeed;
 	}
 

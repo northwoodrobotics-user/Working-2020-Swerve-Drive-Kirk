@@ -9,7 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.button.*;
+import frc.robot.command.drive.*;
+import frc.robot.command.teleop.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -32,6 +33,14 @@ public class OI {
 		driveA.whenPressed(new ToggleFrontDirection(robot.drivetrain));
 		driveX.whenPressed(new ToggleCentricMode(robot.drivetrain));
 		driveL3.whenPressed(new ToggleLimitSpeed(robot.drivetrain));
+		driveY.whenPressed(new TeleIntake(robot.intake));
+	}
+
+	public static double getYStatus() {
+		if (driveController.getYButton()) {
+			return 1.0;
+		}
+		return 0;
 	}
 
 

@@ -1,4 +1,4 @@
-package frc.robot.commands.button;
+package frc.robot.command.drive;
 
 import frc.robot.OI;
 import frc.robot.subsystems.Drivetrain;
@@ -26,7 +26,7 @@ public class ToggleLimitSpeed extends Command {
 		startTime = Timer.getFPGATimestamp();
 		OI.driveController.setRumble(RumbleType.kRightRumble, 1.0);
 
-		if (drivetrain.LimitSpeed()) {
+		if (drivetrain.getLimitSpeed()) {
 			drivetrain.setFullSpeed();
 		} else {
 			drivetrain.setLimitSpeed();

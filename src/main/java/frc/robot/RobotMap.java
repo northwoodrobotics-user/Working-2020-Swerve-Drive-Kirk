@@ -46,6 +46,10 @@ public class RobotMap {
 	public static boolean  BackleftI = true;
 	public static boolean  BackleftSI = false;
 
+	//Intake
+	public static int intakeMotor = 0;
+	public static boolean intakeInverse = false;
+
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
