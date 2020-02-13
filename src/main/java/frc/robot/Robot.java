@@ -13,6 +13,8 @@ import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
+import frc.robot.subsystems.ColorSensor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +27,8 @@ public class Robot extends TimedRobot {
 	// Subsystems
   public final Drivetrain drivetrain = new Drivetrain();
   public final Intake intake = new Intake();
+  public final ColorSensor colorSensor = new ColorSensor();
+
 
 	// Other
 	public static OI oi;
@@ -35,8 +39,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		
 		// Subsystems
 		drivetrain.init();
+		ColorSensor.init();
 
 
 		// Other
@@ -93,5 +99,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Front Right wheel angle is : ", drivetrain.getWheelAngles()[1] % 360);
 		SmartDashboard.putNumber("Back Right wheel angle is : ", drivetrain.getWheelAngles()[2] % 360);
 		SmartDashboard.putNumber("Back Left wheel angle is : ", drivetrain.getWheelAngles()[3] % 360);
+		
+		SmartDashboard.putString("Most likely color : ", ColorSensor.getDetectedColor().toString());
+		
   }
 }

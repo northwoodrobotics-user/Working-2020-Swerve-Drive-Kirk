@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.I2C;
+
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -19,9 +22,11 @@ public class RobotMap {
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
 
+	//Color sensor port
+	public static I2C.Port colorSensorPort = I2C.Port.kOnboard;
+
 	// Motor Map
 	// I = inverse, S = steer
-
 	// Frontleft
 	public static int Frontleft = 1;
 	public static int FrontleftS = 2;
