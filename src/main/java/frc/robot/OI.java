@@ -56,7 +56,7 @@ public class OI {
 	 */
 	public static double deadBand(double input) {
 		double output;
-		double radius = 0.2;
+		double radius = 0.5;
 		assert (-1 <= input && input <= 1) : "input is less than -1 or greater than 1";
 		assert (radius < 1) : "deadband radius is greater than or equal to the maximum output";
 
