@@ -80,7 +80,7 @@ public class OI {
 		assert (-1 <= y && y <= 1) : "b is less than -1 or greater than 1";
 		double[] output = { 0, 0 };
 
-		double radius = 0.15;
+		double radius = 0.3;
 		double exp = 1.5;
 		double inputVectMag = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 		if (inputVectMag > 1) {
