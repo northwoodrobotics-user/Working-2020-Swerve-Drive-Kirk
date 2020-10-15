@@ -9,11 +9,17 @@ package frc.robot;
 
 //import frc.robot.commands.ResetDrivetrainEncoders;
 import frc.robot.subsystems.*;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.ColorSensor;
+import frc.robot.command.autonomus.*;
+
+
+
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,6 +33,12 @@ public class Robot extends TimedRobot {
   public final Drivetrain drivetrain = new Drivetrain();
   public final Intake intake = new Intake();
   public final ColorSensor colorSensor = new ColorSensor();
+
+  
+  public autoFwd autonomousCommand;
+	private enum Direction {FORWARD, BACKWARD}
+	SendableChooser<Direction> sideChooser= new SendableChooser<>();
+
 
 
 	// Other
@@ -48,6 +60,11 @@ public class Robot extends TimedRobot {
 		oi = new OI(this);
 		// SmartDashboard.putData("Reset Encoders", new
 		// ResetDrivetrainEncoders(drivetrain));
+		
+		//this is a Chooser For commands
+		sideChooser.setDefaultOption("Move Forward", Direction.FORWARD);
+		sideChooser.setDefaultOption("Move Backward", Direction.BACKWARD);
+		SmartDashboard.putData("Move", sideChooser);
 	}
 
 	/**

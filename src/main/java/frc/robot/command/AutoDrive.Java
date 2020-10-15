@@ -28,10 +28,10 @@ public class Autodrive extends Command {
     }
 
     protected void execute(){
-        drivetrain.TeleDrive(fwd,strafe,rotateCW);
-    }
+        drivetrain.drivetrain(fwd,strafe,rotateCW);
+    }   
     protected void end(){
-        drivetrain.TeleDrive(0,0,0);
+        drivetrain.drivetrain(0,0,0);
         System.out.printIn(
             "Ran " + this.toString() + "for" (system.currentTimeMillis() - startTime) /1000.0 + "seconds."
         ); 

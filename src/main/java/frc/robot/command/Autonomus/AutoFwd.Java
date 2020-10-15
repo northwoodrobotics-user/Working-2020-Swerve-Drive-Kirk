@@ -1,13 +1,13 @@
 package frc.robot.command.autonomus;
 
 import frc.robot.Robot;
-import frc.robot.command.autonomus.Autodrive;
+import frc.robot.command.Autodrive;
 import edu.wpi.first.wpilbj.command.CommandGroup;
 
 public class autoFwd extends CommandGroup {
     public Autodrive autonomusCommand;
     
-    public autoMove(Robot robot){
+    public autoFwd(Robot robot){
 
     }
     public void goForward(Robot robot) {
