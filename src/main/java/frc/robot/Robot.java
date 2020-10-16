@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import frc.robot.command.autonomous.autoMove;
 //import frc.robot.commands.ResetDrivetrainEncoders;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -37,7 +38,7 @@ public class Robot extends TimedRobot {
   public final Intake intake = new Intake();
   public final ColorSensor colorSensor = new ColorSensor();
   
-  public autonomousMvmt autonomousCommand;
+  public autoMove autonomousCommand;
 private enum Direction {FORWARD, BACKWARD}
 	SendableChooser<Direction> sideChooser= new SendableChooser<>();
 
@@ -87,6 +88,17 @@ private enum Direction {FORWARD, BACKWARD}
 
 	@Override
 	public void autonomousInit() {
+		// schedule the autonomous command
+		autonomousCommand = new autoMove(this);
+		Direction direction = sideChooser.getSelected();
+			/*
+			if(direction == Direction.FORWARD) {
+				autonomousCommand.goForward(this);
+			} else if (direction == Direction.BACKWARD){
+				autonomousCommand.goBackward(this);
+			}
+		*/
+		autonomousCommand.start();
 	}
 
 	/**
