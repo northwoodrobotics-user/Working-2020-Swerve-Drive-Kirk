@@ -1,4 +1,5 @@
 //Marty was here 
+//thanks Kirk was here
 package frc.robot.command.autonomous;
 
 import frc.robot.Robot;
@@ -17,17 +18,11 @@ public class autoMove  extends CommandGroup {
 
 	public void goForward(final Robot robot) {
 
-	//addSequential(new AutoDrive(robot.drivetrain, turn, forward/back, time));//turn right
-	 addSequential(new AutoDrive(robot.drivetrain, 0.5, 0.0, 0.0, 0.5));//go foward 
+	//addSequential(new AutoDrive(robot.drivetrain, forward. strafe, rotate, Time));//turn right
+	 addSequential(new AutoDrive(robot.drivetrain, 0.5, 0.0, 0.0, 0.5));//go foward
+	 addSequential(new AutoDrive(robot.drivetrain,-0.5, 0.0, 0.0, 0.5)); // reverse 
 	 //addSequential(new AutoDrive(robot.drivetrain, 0.5, 0.0, 0.8));//Turn right
-	 //addSequential(new AutoDrive(robot.drivetrain, 0.0, 0.5, 1.1));//go forward
-	 //addSequential(new AutoDrive(robot.drivetrain, 0.6, 0.0, 0.5));//turn right
-	 //addSequential(new AutoDrive(robot.drivetrain, 0.0, 0.5, 0.7));//go forward
-	 //addSequential(new AutoDrive(robot.drivetrain, -0.5, 0.0, 0.6));//Turn left
-	 //addSequential(new AutoDrive(robot.drivetrain, 0.0, 0.5, 1.2));//go forward
-	 //addSequential(new AutoDrive(robot.drivetrain, 0.3, 0.0, 4.3));//go forward
-	 //addSequential(new AutoDrive(robot.drivetrain, 0, -0.4, 2.5));//strafe left
-		
+
 	}
 
 	public void goBackward(final Robot robot) {
