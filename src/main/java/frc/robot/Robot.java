@@ -91,7 +91,7 @@ private enum Direction {FORWARD, BACKWARD}
 		// schedule the autonomous command
 		autonomousCommand = new autoMove(this);
 		Direction direction = sideChooser.getSelected();
-			
+		
 			if(direction == Direction.FORWARD) {
 				autonomousCommand.goForward(this);
 			} else if (direction == Direction.BACKWARD){

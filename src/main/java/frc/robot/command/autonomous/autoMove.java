@@ -19,13 +19,26 @@ public class autoMove  extends CommandGroup {
 	public void goForward(final Robot robot) {
 
 	//addSequential(new AutoDrive(robot.drivetrain, forward. strafe, rotate, Time));//turn right
-	 addSequential(new AutoDrive(robot.drivetrain, 0.5, 0.0, 0.0, 0.5));//go foward
+	 addSequential(new AutoDrive(robot.drivetrain, 2.0, 0.0, 0.0, 3.0));//go foward
+	 addSequential(new AutoDrive(robot.drivetrain, 0.0, 0.0, 0.0, 0.2)); // stay still
+	 addSequential(new AutoDrive(robot.drivetrain, 1.0, 0.0, 0.0, 3.0));//go foward
+	 addSequential(new AutoDrive(robot.drivetrain, 0.0, 0.0, 0.0, 0.2)); // stay still
 	 addSequential(new AutoDrive(robot.drivetrain,-0.5, 0.0, 0.0, 0.5)); // reverse 
+	 addSequential(new AutoDrive(robot.drivetrain, 0.0, 0.0, 0.0, 0.2)); // stay still
+	 addSequential(new AutoDrive(robot.drivetrain, 0.5, 0.5, 0.0, 2.0));
+	 addSequential(new AutoDrive(robot.drivetrain, 0.0, 0.0, 0.0, 0.2)); // stay still
+	 addSequential(new AutoDrive(robot.drivetrain, -0.5, -0.5, 0.0, 2.0));
+	 addSequential(new AutoDrive(robot.drivetrain, 0.0, 0.0, 0.0, 0.2)); // stay still
+	 addSequential(new AutoDrive(robot.drivetrain, 0.0, 0.0, 1.0, 5.0));
 	 //addSequential(new AutoDrive(robot.drivetrain, 0.5, 0.0, 0.8));//Turn right
 
 	}
 
 	public void goBackward(final Robot robot) {
-	
+		addSequential(new AutoDrive(robot.drivetrain, 0.5, 0.0, 0.0, 0.5));//go foward
+		addSequential(new AutoDrive(robot.drivetrain,0.0, 0.5, 0.0, 0.5)); // reverse 
+		addSequential(new AutoDrive(robot.drivetrain, 0.0, 0.0, 0.0, 2.0)); // stay still
+		addSequential(new AutoDrive(robot.drivetrain, 0.0, -0.5, 0.0, 0.5));//go foward
+	 	addSequential(new AutoDrive(robot.drivetrain,-0.5, 0.0, 0.0, 0.5)); // reverse 
 	}
 }
