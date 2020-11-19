@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.ColorSensor;
+import frc.robot.subsystems.Lifter;;
 
 
 
@@ -37,6 +38,7 @@ public class Robot extends TimedRobot {
   public final Drivetrain drivetrain = new Drivetrain();
   public final Intake intake = new Intake();
   public final ColorSensor colorSensor = new ColorSensor();
+  public Lifter lifter = new Lifter();
   
   public autoMove autonomousCommand;
 private enum Direction {FORWARD, BACKWARD}

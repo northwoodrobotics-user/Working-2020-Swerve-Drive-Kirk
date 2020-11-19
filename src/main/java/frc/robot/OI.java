@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.command.drive.*;
 import frc.robot.command.teleop.*;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -34,7 +35,18 @@ public class OI {
 		driveX.whenPressed(new ToggleCentricMode(robot.drivetrain));
 		driveL3.whenPressed(new ToggleLimitSpeed(robot.drivetrain));
 		driveY.whenPressed(new TeleIntake(robot.intake));
+		driveLTrigger.whenPressed(new Telelift(robot.lifter));
 	}
+
+
+
+	public static double getLeftTrigger() {
+		return driveController.getTriggerAxis(Hand.kLeft);
+	  }
+	
+	  public static double getRightTrigger() {
+		return driveController.getTriggerAxis(Hand.kRight);
+	  }
 
 	public static double getYStatus() {
 		if (driveController.getYButton()) {
