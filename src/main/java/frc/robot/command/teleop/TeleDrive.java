@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.teleop;
+package frc.robot.command.teleop;
 
 import frc.robot.OI;
 import frc.robot.subsystems.Drivetrain;

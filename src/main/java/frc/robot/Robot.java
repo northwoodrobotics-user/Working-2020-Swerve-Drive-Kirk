@@ -7,12 +7,24 @@
 
 package frc.robot;
 
+import frc.robot.command.autonomous.autoMove;
 //import frc.robot.commands.ResetDrivetrainEncoders;
 import frc.robot.subsystems.*;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.ColorSensor;
+import frc.robot.subsystems.Lifter;;
+
+
+
+
+
+
+
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,6 +36,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
 	// Subsystems
   public final Drivetrain drivetrain = new Drivetrain();
+  public final Intake intake = new Intake();
+  public final ColorSensor colorSensor = new ColorSensor();
+  public Lifter lifter = new Lifter();
+  
+  public autoMove autonomousCommand;
+private enum Direction {FORWARD, BACKWARD}
+	SendableChooser<Direction> sideChooser= new SendableChooser<>();
+
+
+  
+
 
 	// Other
 	public static OI oi;
@@ -34,13 +57,21 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
+		
 		// Subsystems
 		drivetrain.init();
+		ColorSensor.init();
+
 
 		// Other
 		oi = new OI(this);
 		// SmartDashboard.putData("Reset Encoders", new
 		// ResetDrivetrainEncoders(drivetrain));
+		
+		//this is a Chooser For commands
+		sideChooser.setDefaultOption("Move Forward", Direction.FORWARD);
+		sideChooser.setDefaultOption("Move Backward", Direction.BACKWARD);
+		SmartDashboard.putData("Move", sideChooser);
 	}
 
 	/**
@@ -59,6 +90,17 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
+		// schedule the autonomous command
+		autonomousCommand = new autoMove(this);
+		Direction direction = sideChooser.getSelected();
+		
+			if(direction == Direction.FORWARD) {
+				autonomousCommand.goForward(this);
+			} else if (direction == Direction.BACKWARD){
+				autonomousCommand.goBackward(this);
+			}
+		
+		autonomousCommand.start();
 	}
 
 	/**
@@ -81,14 +123,18 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 	}
 	@Override
-  public void robotPeriodic() {
-	SmartDashboard.putString("Centric mode", drivetrain.getCentricMode().toString() + "-CENTRIC");
-	SmartDashboard.putBoolean("Front is Forward : ", drivetrain.isBackForward());
-	
-	//prints mod360 to get absolute wheel angle
-	SmartDashboard.putNumber("Front Left wheel angle is : ", drivetrain.getWheelAngles()[0] % 360);
-	SmartDashboard.putNumber("Front Right wheel angle is : ", drivetrain.getWheelAngles()[1] % 360);
-	SmartDashboard.putNumber("Back Right wheel angle is : ", drivetrain.getWheelAngles()[2] % 360);
-	SmartDashboard.putNumber("Back Left wheel angle is : ", drivetrain.getWheelAngles()[3] % 360);
+ 	public void robotPeriodic() {
+		SmartDashboard.putString("Centric mode", drivetrain.getCentricMode().toString() + "-CENTRIC");
+		SmartDashboard.putBoolean("Front is Forward : ", drivetrain.isBackForward());
+		SmartDashboard.putBoolean("Speed is limited : ", drivetrain.getLimitSpeed());
+		
+		//prints mod360 to get absolute wheel angle
+		SmartDashboard.putNumber("Front Left wheel angle is : ", drivetrain.getWheelAngles()[0] % 360);
+		SmartDashboard.putNumber("Front Right wheel angle is : ", drivetrain.getWheelAngles()[1] % 360);
+		SmartDashboard.putNumber("Back Right wheel angle is : ", drivetrain.getWheelAngles()[2] % 360);
+		SmartDashboard.putNumber("Back Left wheel angle is : ", drivetrain.getWheelAngles()[3] % 360);
+		
+		SmartDashboard.putString("Most likely color : ", ColorSensor.getDetectedColor().toString());
+		
   }
 }

@@ -9,7 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.button.*;
+import frc.robot.command.drive.*;
+import frc.robot.command.teleop.*;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -32,6 +34,25 @@ public class OI {
 		driveA.whenPressed(new ToggleFrontDirection(robot.drivetrain));
 		driveX.whenPressed(new ToggleCentricMode(robot.drivetrain));
 		driveL3.whenPressed(new ToggleLimitSpeed(robot.drivetrain));
+		driveY.whenPressed(new TeleIntake(robot.intake));
+		driveLTrigger.whenPressed(new Telelift(robot.lifter));
+	}
+
+
+
+	public static double getLeftTrigger() {
+		return driveController.getTriggerAxis(Hand.kLeft);
+	  }
+	
+	  public static double getRightTrigger() {
+		return driveController.getTriggerAxis(Hand.kRight);
+	  }
+
+	public static double getYStatus() {
+		if (driveController.getYButton()) {
+			return 1.0;
+		}
+		return 0;
 	}
 
 
@@ -47,7 +68,7 @@ public class OI {
 	 */
 	public static double deadBand(double input) {
 		double output;
-		double radius = 0.2;
+		double radius = 0.5;
 		assert (-1 <= input && input <= 1) : "input is less than -1 or greater than 1";
 		assert (radius < 1) : "deadband radius is greater than or equal to the maximum output";
 
@@ -71,7 +92,7 @@ public class OI {
 		assert (-1 <= y && y <= 1) : "b is less than -1 or greater than 1";
 		double[] output = { 0, 0 };
 
-		double radius = 0.15;
+		double radius = 0.3;
 		double exp = 1.5;
 		double inputVectMag = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 		if (inputVectMag > 1) {
