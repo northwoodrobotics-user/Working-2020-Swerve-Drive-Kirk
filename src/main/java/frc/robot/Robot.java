@@ -39,6 +39,7 @@ public class Robot extends TimedRobot {
   public final Intake intake = new Intake();
   public final ColorSensor colorSensor = new ColorSensor();
   public Lifter lifter = new Lifter();
+  public final Locker locker = new Locker();
   public final Compressor compressor = new Compressor();
   
   public autoMove autonomousCommand;

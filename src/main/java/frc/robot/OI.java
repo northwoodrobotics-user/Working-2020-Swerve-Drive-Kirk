@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.command.drive.*;
 import frc.robot.command.teleop.*;
+import frc.robot.command.button.*;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 /**
@@ -36,6 +37,7 @@ public class OI {
 		driveL3.whenPressed(new ToggleLimitSpeed(robot.drivetrain));
 		driveY.whenPressed(new TeleIntake(robot.intake));
 		driveLTrigger.whenPressed(new Telelift(robot.lifter));
+		driveB.whenPressed(new ToggleFlipper(robot.locker));
 	}
 
 
