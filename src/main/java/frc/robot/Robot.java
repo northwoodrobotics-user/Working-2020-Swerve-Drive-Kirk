@@ -139,5 +139,7 @@ private enum Direction {FORWARD, BACKWARD}
 		
 		SmartDashboard.putString("Most likely color : ", ColorSensor.getDetectedColor().toString());
 		
+		SmartDashboard.putBoolean("Locker is Locked", locker.getPositon());
+		
   }
 }
